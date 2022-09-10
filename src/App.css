@@ -1,0 +1,116 @@
+* {
+   margin: 0;
+   padding: 0;
+   box-sizing: inherit;
+}
+
+body {
+   box-sizing: border-box;
+   height: 100vh;
+   background-image: url(./media/background.webp);
+   background-attachment: fixed;
+   background-size: cover;
+   color: #fff;
+}
+
+.aplayer-controller {
+   background: #0d0923;
+   padding: 5px;
+}
+.aplayer-info {
+   background: #0d0923;
+   margin-left: 90px;
+   height: 90px;
+   padding: 10px 7px 0;
+}
+
+.aplayer .aplayer-lrc:after {
+   bottom: 0;
+   height: 33%;
+   background: #0d0923 !important;
+   filter: none;
+}
+
+.aplayer-lrc-contents {
+   background: #0d0923;
+}
+
+.aplayer .aplayer-lrc:before {
+   top: 0;
+   height: 10%;
+   background: #0d0923 !important;
+
+   filter: none;
+}
+
+.MuiIconButton-root {
+   flex: 0 0 auto;
+   color: rgb(255 255 255 / 100%) !important;
+}
+
+.aplayer-title {
+   font-size: 12px !important;
+   color: white !important;
+}
+.aplayer {
+   background-color: rgb(32, 13, 49) !important;
+   margin: 0 !important;
+}
+.aplayer-icon {
+   display: none !important;
+}
+.aplayer-author {
+   opacity: .6 !important;
+   color: #ffffff !important;
+}
+
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .css-xy8c7v {
+    height: 396px !important;
+}    
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    .css-xy8c7v {
+    height: 456px !important;
+} 
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    .css-xy8c7v {
+    height: 656px !important;
+} 
+} 
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    .css-xy8c7v {
+    height: 756px !important;
+} 
+} 
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    .css-xy8c7v {
+    height: 926px !important;
+} 
+}
+
+.css-u6q724-MuiContainer-root {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+
+
+
+
+
+
+
+
+
+

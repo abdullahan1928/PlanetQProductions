@@ -47,13 +47,13 @@ const MiddleSpeaker = styled(Box)(({ theme }) => ({
 }));
 
 const RainBox = styled(Box)(({ theme }) => ({
-    backgroundImage: `url(${rain})`,
-    width: '100%',
-    height: '900px',
-    backgroundSize: 'cover',
-    objectFit: 'scale-down',
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat',
+   backgroundImage: `url(${rain})`,
+   width: '100%',
+   height: '900px',
+   backgroundSize: 'cover',
+   objectFit: 'scale-down',
+   backgroundPosition: 'center',
+   backgroundRepeat: 'no-repeat',
 }));
 
 const Mics = () => {

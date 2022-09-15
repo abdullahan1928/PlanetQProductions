@@ -10,7 +10,7 @@ import DrawerComponent from '../comps/drawer';
 import {
    useTheme,
    useMediaQuery,
- } from "@material-ui/core";
+} from "@material-ui/core";
 //import useMediaQuery from '@material-ui/core/useMediaQuery'
 //import { theme } from '@material-ui/core/styles';//
 //import { createTheme } from '@mui/material';
@@ -50,9 +50,9 @@ const MenuButton = styled(Button)(({ theme }) => ({
 }));
 
 const Social = styled(Box)(({ theme }) => ({
-    '& img': {
-         marginRight: '1rem',
-    } 
+   '& img': {
+      marginRight: '1rem',
+   }
 }));
 
 const Header = () => {
@@ -70,33 +70,33 @@ const Header = () => {
                   Q-Productions
                </Typography>
             </Box>
-         {isMobile ? (
-          <DrawerComponent />
-          ) : (
-            <Menus>
-               <Row>
-                  <MenuButton component={Link} to='/' >Home</MenuButton>
-                  <MenuButton component={Link} to='/albums'>Albums</MenuButton>
-                  <MenuButton component={Link} to='/radio'>Radio</MenuButton>
-                  <MenuButton component={Link} to='/gallery'>Gallery</MenuButton>
-               </Row>
-               <Row>
-                  <MenuButton component={Link} to='/about' >About Us</MenuButton>
-                  <MenuButton component={Link} to='/videos'>Videos</MenuButton>
-                  <MenuButton component={Link} to='/beats'>Beats</MenuButton>
-                  <MenuButton component={Link} to='/contact'>Contact Us</MenuButton>
-                     <Social>
-<a href="https://twitter.com/planetqproducti"> <img src={twitter} alt='' /> </a>
-<a href="https://instagram.com/planet_q_productions"> <img src={instagram} alt='' /> </a>
-<a href="https://www.facebook.com/Planet-Q-Productions-122819285080847"><img src={facebook} alt='' /> </a>
-<a href="https://www.youtube.com/channel/UCJbAwNlfywwXwsMjiPInfNg"><img src={youtube}  alt=''/> </a>
-                  </Social>
+            {isMobile ? (
+               <DrawerComponent />
+            ) : (
+               <Menus>
+                  <Row>
+                     <MenuButton component={Link} to='/' >Home</MenuButton>
+                     <MenuButton component={Link} to='/albums'>Albums</MenuButton>
+                     <MenuButton component={Link} to='/radio'>Radio</MenuButton>
+                     <MenuButton component={Link} to='/gallery'>Gallery</MenuButton>
                   </Row>
-       
-               </Menus>
-               )}
+                  <Row>
+                     <MenuButton component={Link} to='/about' >About Us</MenuButton>
+                     <MenuButton component={Link} to='/videos'>Videos</MenuButton>
+                     <MenuButton component={Link} to='/beats'>Beats</MenuButton>
+                     <MenuButton component={Link} to='/contact'>Contact Us</MenuButton>
+                     <Social>
+                        <a href="https://twitter.com/planetqproducti"> <img src={twitter} alt='' /> </a>
+                        <a href="https://instagram.com/planet_q_productions"> <img src={instagram} alt='' /> </a>
+                        <a href="https://www.facebook.com/Planet-Q-Productions-122819285080847"><img src={facebook} alt='' /> </a>
+                        <a href="https://www.youtube.com/channel/UCJbAwNlfywwXwsMjiPInfNg"><img src={youtube} alt='' /> </a>
+                     </Social>
+                  </Row>
 
-           </Flex>
+               </Menus>
+            )}
+
+         </Flex>
       </HeaderWrapper>
    );
 };

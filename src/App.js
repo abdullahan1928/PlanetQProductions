@@ -58,7 +58,7 @@ function App() {
                      </Layout>
                   }
                />
-               
+
                <Route
                   path='/about'
                   element={
@@ -94,33 +94,33 @@ function App() {
                <Route
                   path='/login'
                   element={
-                        <Login />
+                     <Login />
                   }
                />
                <Route
                   path='/audiolisting'
                   element={
-                        <AudioListing />
+                     <AudioListing />
                   }
                />
                <Route
                   path='/add-audio'
                   element={
-                        <AddAudio />
+                     <AddAudio />
                   }
                />
                <Route
                   path='/edit-audio'
                   element={
-                        <EditAudio />
+                     <EditAudio />
                   }
                />
             </Routes>
             <ToastContainer
-                    hideProgressBar
-                    position="top-right"
-                    icon={true}
-                    autoClose={15000}/>
+               hideProgressBar
+               position="top-right"
+               icon={true}
+               autoClose={15000} />
          </BrowserRouter>
       </ThemeProvider>
    );

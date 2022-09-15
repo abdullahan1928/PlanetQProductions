@@ -52,7 +52,7 @@ export default function AddNewAudio() {
 			navigate("/login");
 		}
 		// }
-	}, []);
+	}, [location, navigate]);
 
 	const validationSchema = Yup.object().shape({
 		title: Yup.string()
@@ -120,7 +120,7 @@ export default function AddNewAudio() {
 			thumnailMedia: await getBase64(thumnail).then((response) => {
 				return response.split(",")[1];
 			}),
-			audioFile: formData.soundcloudurl == '' ? "https://api.planetqproductions.com/storage/uploads/files/audio/" + audioFileName : "https://api.planetqproductions.com/storage/uploads/files/audio/Test.mp3",
+			audioFile: formData.soundcloudurl === '' ? "https://api.planetqproductions.com/storage/uploads/files/audio/" + audioFileName : "https://api.planetqproductions.com/storage/uploads/files/audio/Test.mp3",
 			audioMedia: audioFile ? await getBase64(audioFile).then((response) => {
 				return response;
 			}) : null,
@@ -136,7 +136,7 @@ export default function AddNewAudio() {
 		};
 		const promise = axios(config)
 			.then((response) => {
-				if (response.status == 200) {
+				if (response.status === 200) {
 					//console.log('response', response);
 					navigate("/audiolisting", { state: { token: "Token" } });
 					setIsLoading(false);
@@ -146,7 +146,7 @@ export default function AddNewAudio() {
 			.catch(function (error) {
 				console.log(error);
 				setIsLoading(false);
-				if (error.status == 413) {
+				if (error.status === 413) {
 					toast.error("Your File greater than maximum Uploading Limit");
 				} else {
 					toast.error("Error");

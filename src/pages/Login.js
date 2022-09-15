@@ -9,12 +9,12 @@ import * as Yup from 'yup';
 import { Box, Button, Container, Grid, Link, TextField, Typography } from '@mui/material';
 import { toast } from 'react-toastify';
 const Login = () => {
-   let navigate = useNavigate();
-   const [isSubmitting,setIsSubmitting] = useState(false);
-   useEffect(() => {
-      // document.body.style.backgroundImage = "url()";
+  let navigate = useNavigate();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  useEffect(() => {
+    // document.body.style.backgroundImage = "url()";
 
-   }, [])
+  }, [])
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -35,11 +35,11 @@ const Login = () => {
           'Password is required')
     }),
     onSubmit: (data) => {
-      if(data.email === "demo@devias.io" && data.password === "Password123" ){
-        navigate('/audioListing',{state:{token:"Token"} });
+      if (data.email === "demo@devias.io" && data.password === "Password123") {
+        navigate('/audioListing', { state: { token: "Token" } });
         setIsSubmitting(true);
       }
-      else{
+      else {
         toast.error("Email or Password is not Correct");
       }
     }
@@ -59,7 +59,7 @@ const Login = () => {
           minHeight: '100%'
         }}
       >
-        <Container maxWidth="sm" style={{background: "white", marginTop:"10%"}}>
+        <Container maxWidth="sm" style={{ background: "white", marginTop: "10%" }}>
 
           <form onSubmit={formik.handleSubmit}>
             <Box sx={{ my: 3 }}>

@@ -4,7 +4,7 @@ import Mics from './Mics';
 import ReactAplayer from 'react-aplayer';
 import { Box, Container, Hidden } from '@mui/material';
 import axios from 'axios';
-import Sound_Cloud from "./Sound_Cloud";
+import SoundCloud from "./Sound_Cloud";
 
 const Layout = ({ children }) => {
 
@@ -21,18 +21,18 @@ const Layout = ({ children }) => {
       return Math.floor(Math.random() * max);
    }
    /// Fetch Playlist from API
-   const getAudioList = () => {
+   const getAudioList = async () => {
 
-      axios.get("https://api.planetqproductions.com/api/audio/")
+      await axios.get("https://api.planetqproductions.com/api/audio/")
          .then(
             (response) => {
-
+               console.log(response.data);
                let trackList = [];
                let soundCloudtrackList = [];
                //response.data.data.filter((item) => item.soundcloudurl != null && item.soundcloudurl != "").forEach((item) => {
                response.data.data.forEach((item) => {
                   //console.log(item.soundcloudurl);
-                  if (item.soundcloudurl != null && item.soundcloudurl != "") {
+                  if (item.soundcloudurl != null && item.soundcloudurl !== "") {
                      trackList.push({
                         name: item.title,
                         artist: item.artistName,
@@ -103,25 +103,23 @@ const Layout = ({ children }) => {
          let trackID = String(e.path[0].currentSrc).match(regex);
          //console.log(trackID[0])
          if (trackID[0]) {
-
             //  console.log(JSON.stringify(mainTrackList.audio))
             // console.log(e.path[0].currentSrc)
-            let sTrack = mainTrackList.audio.filter((x) => x.url == e.path[0].currentSrc)[0];
-
-            //console.log(sTrack)
+            let sTrack = mainTrackList.audio.filter((item) => item.url.includes(trackID[0]))[0];
+            console.log('This is strack', sTrack);
             setSoundCloudAudio({ audio: sTrack, trackID: trackID[0] })
-
-
+            window.ap.play();
          }
       }
       else {
          setShowPlayer(true)
          setSoundCloudAudio({ audio: null, trackID: null })
-
-         window.ap.play();
+         // window.ap.play();
       }
+      window.ap.play();
 
    };
+
    const onPause = () => {
       console.log('on pause');
    };
@@ -130,10 +128,9 @@ const Layout = ({ children }) => {
       window.ap = ap;
    };
 
-   const onLoadStart = (ap) => {
-      console.log(ap);
-
-   }
+   // const onLoadStart = (ap) => {
+   //    console.log(ap);
+   // }
 
 
    return (
@@ -143,14 +140,16 @@ const Layout = ({ children }) => {
             <Mics />
             <Box sx={{ width: '100%' }} >
                <div style={{ display: soundCloudAudio.trackID ? 'none' : 'block' }}>
-                  {mainTrackList && (<ReactAplayer
-                     ref={iframeRef}
-                     {...mainTrackList}
-                     onInit={onInit}
-                     onPlay={onPlay}
-                     onPause={onPause}
-                  //onLoadStart={onLoadStart}
-                  />)
+                  {mainTrackList && (
+                     <ReactAplayer
+                        ref={iframeRef}
+                        {...mainTrackList}
+                        onInit={onInit}
+                        onPlay={onPlay}
+                        onPause={onPause}
+                     //onLoadStart={onLoadStart}
+                     />
+                  )
 
                      // !radioFlag && mainTrackList && (<ReactAplayer
                      //    //ref={iframeRef}
@@ -163,7 +162,7 @@ const Layout = ({ children }) => {
                   }</div>
 
                <div style={{ display: soundCloudAudio.trackID ? 'block' : 'none' }}>
-                  <Sound_Cloud
+                  <SoundCloud
                      soundCloudAudio={soundCloudAudio}
                      onFinish={(e) => { //console.log("finished..."); 
                         window.ap.play()

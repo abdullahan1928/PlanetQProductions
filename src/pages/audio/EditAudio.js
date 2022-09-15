@@ -50,7 +50,7 @@ export default function AddNewAudio() {
     setAudioFileName(location.state.list.audioFileName);
     setAudioFile(location.state.list.audioFile);
     setSoundCloudUrl(location.state.list.soundcloudurl);
-  }, [])
+  }, [location, navigate])
 
   const validationSchema = Yup.object().shape({
     title: Yup.string()
@@ -125,7 +125,7 @@ export default function AddNewAudio() {
 
     const promise = axios(config)
       .then((response) => {
-        if (response.status == 200) {
+        if (response.status === 200) {
           //console.log('response', response);
           navigate('/audiolisting', { state: { token: "Token" } });
           setIsLoading(false);
@@ -135,7 +135,7 @@ export default function AddNewAudio() {
       .catch(function (error) {
         console.log(error);
         setIsLoading(false);
-        if (error.status == 413) {
+        if (error.status === 413) {
           toast.error("Your File greater than maximum Uploading Limit");
         }
         else {

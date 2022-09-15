@@ -1,6 +1,6 @@
 import {Howl, Howler} from 'howler';
 //import {useMemo, useEffect, useState} from "react";
-import {Component} from "react";
+// import {Component} from "react";
 
 
 
@@ -25,7 +25,7 @@ const SoundPlayer =(props)=>{
 
     // render(){
         return (
-        <div className = "App">
+        <div className="App">
             <h2>sound</h2>
             {renderButtonSound()}
         </div>);

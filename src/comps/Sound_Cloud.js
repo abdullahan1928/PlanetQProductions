@@ -1,14 +1,14 @@
-import React, { useState, useEffect, createRef } from "react";
+import React, { useState, useEffect, createRef, useCallback } from "react";
 //import './App.css';
 
 import loadscript from "load-script";
-import { Deblur, Margin } from "@mui/icons-material";
-import { purple } from "@mui/material/colors";
+// import { Deblur, Margin } from "@mui/icons-material";
+// import { purple } from "@mui/material/colors";
 
 // SoundCloud widget API
 //  https://developers.soundcloud.com/docs/api/html5-widget
 
-function Sound_Cloud(props) {
+function SoundCloud(props) {
 	// state
 
 	// used to communicate between SC widget and React
@@ -19,9 +19,19 @@ function Sound_Cloud(props) {
 	const [player, setPlayer] = useState(false);
 	const iframeRef = createRef();
 
-
-
 	// initialization - load soundcloud widget API and set SC event listeners
+
+	const playToggle = () => {
+		if (!window.player) return; // player loaded async - make sure available	
+		//let isPaused = window.player.isPaused();
+		if (isPlaying) {
+			window.player.pause();
+		} else {
+			window.player.play();
+		}
+		//console.log(isPlaying)
+		setIsPlaying(!isPlaying);
+	}
 
 	useEffect(() => {
 		// use load-script module to load SC Widget API
@@ -30,7 +40,7 @@ function Sound_Cloud(props) {
 			loadscript("https://w.soundcloud.com/player/api.js", () => {
 				// initialize player and store reference in state
 
-				window.player = window.SC.Widget(iframeRef.current);
+				window.player = window.SC.Widget('sc-widget');
 				//setPlayer(player);
 				//window.player.play();
 				setBackgroundCover('url("' + props.soundCloudAudio.audio.cover + '")')
@@ -43,7 +53,7 @@ function Sound_Cloud(props) {
 				window.player.bind(PLAY, (value) => {
 
 					console.log("player play")
-					setIsPlaying(true)
+					// setIsPlaying(true)
 					// // update state to playing
 					//setIsPlaying(true);
 
@@ -53,10 +63,8 @@ function Sound_Cloud(props) {
 					// });
 				});
 				window.player.bind(PAUSE, (value) => {
-
-
 					console.log("player pause")
-					//setIsPlaying(false);
+					// setIsPlaying(false);
 
 					// 	// console.log(value);
 
@@ -67,32 +75,13 @@ function Sound_Cloud(props) {
 
 				});
 				window.player.bind(FINISH, props.onFinish);
-				setTimeout(() => { playToggle() }, 2000)
+				// setTimeout(() => { playToggle() }, 2000)
 			});
 	}, [props.soundCloudAudio]);
 
 	// integration - update SC player based on new state (e.g. play button in React section was click)
 
 	// adjust playback in SC player to match isPlaying state
-
-
-
-	const playToggle = () => {
-		if (!window.player) return; // player loaded async - make sure available	
-		//let isPaused = window.player.isPaused();
-
-
-		if (isPlaying) {
-			window.player.pause();
-
-		} else {
-			window.player.play();
-		}
-		//console.log(isPlaying)
-
-		setIsPlaying(!isPlaying);
-
-	}
 
 	// adjust seleted song in SC player playlist if playlistIndex state has changed
 	// useEffect(() => {
@@ -139,6 +128,7 @@ function Sound_Cloud(props) {
 			<div className="soundcloud-section">
 				{props.soundCloudAudio.trackID &&
 					(<iframe
+						title="soundcloud"
 						ref={iframeRef}
 						id="sc-widget"
 						width="600"
@@ -152,13 +142,17 @@ function Sound_Cloud(props) {
 			</div>
 			<div style={{ display: 'block' }}><div className="aplayer aplayer-withlist">
 				<div className="aplayer-body">
-					<div className="aplayer-pic" style={{ backgroundImage: backgroundCover, backgroundColor: 'rgb(255, 255, 255)' }} onClick={() => { playToggle() }}>
+					<div className="aplayer-pic"
+						style={{
+							backgroundImage: backgroundCover,
+							backgroundColor: 'rgb(255, 255, 255)'
+						}}
+						onClick={() => { playToggle() }}
+					>
 
 						{!isPlaying && (<div className="aplayer-button aplayer-play" ><svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 16 31"><path d="M15.552 15.168q0.448 0.32 0.448 0.832 0 0.448-0.448 0.768l-13.696 8.512q-0.768 0.512-1.312 0.192t-0.544-1.28v-16.448q0-0.96 0.544-1.28t1.312 0.192z" /></svg></div>)}
 
 						{isPlaying && (<div className="aplayer-button aplayer-pause" ><svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 17 32"><path d="M14.080 4.8q2.88 0 2.88 2.048v18.24q0 2.112-2.88 2.112t-2.88-2.112v-18.24q0-2.048 2.88-2.048zM2.88 4.8q2.88 0 2.88 2.048v18.24q0 2.112-2.88 2.112t-2.88-2.112v-18.24q0-2.048 2.88-2.048z"></path></svg></div>)}
-
-
 
 					</div>
 					<div className="aplayer-info">
@@ -233,4 +227,4 @@ function Sound_Cloud(props) {
 
 	);
 }
-export default Sound_Cloud;
+export default SoundCloud;

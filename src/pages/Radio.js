@@ -12,7 +12,7 @@ import platform from "../media/platform.webp";
 import spotify from "../media/spotify.webp";
 import donate from "../media/donate.webp";
 import verum from "../media/verum.jpeg";
-import Sound_Cloud from "../comps/Sound_Cloud";
+import SoundCloud from "../comps/Sound_Cloud";
 const Img = styled("img")(({ theme }) => ({
   maxWidth: "100%",
   margin: "0 auto",
